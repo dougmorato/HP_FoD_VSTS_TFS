@@ -1,0 +1,62 @@
+ <!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+     <title>Setup HP FoD Integration</title>
+     <script type="text/javascript" src="lib/VSS.SDK.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ </head>
+ <body>
+     <script type="text/javascript">VSS.init({
+         explicitNotifyLoaded: true, 
+         //We are using some VSTS APIs, so we will need the module loader to load them
+         usePlatformScripts: true,
+         usePlatformStyles: true
+     });
+     var extensionCtx = VSS.getExtensionContext();
+     VSS.ready(function () {
+            require(["scripts/setup-hp-fod"], function (extensionData) { });
+        });
+     </script>
+     <style type="text/css">
+         .uri {
+             width: 100%;
+         }
+         .fodForm {
+             width: 100%;
+         }
+         .label {
+             width: 25%;
+         }
+         .field {
+             width: 75%;
+         }
+
+         input[type="text"], input[type="password"] {
+             border: 1px solid #E6E6E6;
+             padding: 2px;
+         }
+     </style>
+     <div class="statusBarOK" style="display:none;background-color:green" ><span>Save succeed</span></div>
+     <h3>Configure HP FoD integration for this build</h3>
+     <form>
+         <table class="fodForm">
+             <tr>
+                 <td class="option-label label">
+                     <label for="HP_FoD_Integration_URI">HP FoD Integration URI </label>
+                 </td>
+                 <td class="field">
+                     <input type="text" id="HP_FoD_Integration_URI" data-bind="value: HP_FoD_Integration_URI" class="uri form-control"
+                            disabled/>
+                 </td>
+             </tr>s
+             <tr>
+                 <td></td>
+                 <td><button class="saveButton new-work-item-create-button" data-bind="click: save">Save Settings</button></td>
+             </tr>
+         </table>
+
+     </form>
+
+
+ </body>
+ </html>

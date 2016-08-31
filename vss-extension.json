@@ -1,0 +1,98 @@
+{
+ "manifestVersion": 1,
+ "id": "HP_FoD_VSTS_TFS",
+   "version": "1.0",
+ "name": "HP FoD integration with VSTS",
+ "description": "An extension for intergation of HP FoD with TFS 2015 or VSTS. Developed by Doug Morato - doug.morato@pwc.com",
+     "publisher": "dougmorato",
+     "targets": [
+         {
+             "id": "Microsoft.VisualStudio.Services"
+         }
+     ],
+ "icons": {
+         "default": "images/pwc_logo.png"
+     },
+ "categories": [
+	"Build and release"
+ ],
+ "tags":[
+		"PwC",
+		"FoD",
+		"Fortify",
+		"HP FoD"
+	],
+"content":	{
+	"details": {
+		"path": "about.md"
+	}		
+},
+"branding": {
+		"color": "#eb8c00",
+		"theme": "light"
+	},
+ "scopes": [
+        "vso.work",
+	    "vso.build",
+        "vso.build_execute",
+        "vso.code"
+
+ ],
+     "contributions": [
+         {
+         "id": "setup-build-action",
+         "type": "ms.vss-web.action",
+         "description": "Setup a build definition with HP FoD ",
+         "targets": [
+             "ms.vss-build-web.build-definition-menu"
+         ],
+         "properties": {
+             "text": "Setup JFrog Artifactory",
+             "title": "Setup JFrog Artifactory",
+             "uri": "setup_hp_fod_action.html"
+         	}
+     	},
+		{
+			"id": "setupBuildDialog",
+			"type": "ms.vss-web.control",
+			"description": "The content to be displayed on setup HP FoD action dialog",
+			"targets": [],
+			"properties": {
+				"uri": "setup_hp_fod_dialog.html?id={{buildDefId}}"
+			}
+		},
+		{
+			"id": "jfrog-artifactory-deployer-build-task",
+			"type": "ms.vss-distributed-task.task",
+			"targets": [
+				"ms.vss-distributed-task.tasks"
+			],
+			"properties": {
+				"name": "HP_FoD_Uploader"
+			}
+		}
+     ],
+     "files": [
+         {
+             "path": "setup_hp_fod_action.html", "addressable": true
+         },
+         {
+             "path": "setup_hp_fod_dialog.html", "addressable": true
+         },
+         {
+             "path": "lib", "addressable": true
+         },
+        {
+             "path": "scripts", "addressable": true
+         },
+         {
+			"path": "css", "addressable": true
+		 },
+         {
+			"path": "images", "addressable": true
+		 },
+         {
+			"path": "HP_FoD_Uploader", "addressable": true
+		}
+     ]
+}

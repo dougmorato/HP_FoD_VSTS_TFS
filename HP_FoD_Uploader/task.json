@@ -1,0 +1,70 @@
+{
+  "id": "07fc5c20-6772-11e5-abde-6901d3d00465",
+  "name": "HP_FoD_Uploader",
+  "friendlyName": "HP FoD Uploader task for VSTS and TFS",
+  "description": " This task helps you to upload your codebase to HP FoD for a Static Code Analysis assessment from VSTS or Microsoft TFS 2015",
+  "author": "Doug Morato - doug.morato@pwc.com",
+  "helpMarkDown": "Task to submit static code assessments to HP FoD using VSTS or TFS 2015.",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "1",
+    "Minor": "0",
+    "Patch": "0"
+  },
+  "minimumAgentVersion": "1.83.0",
+  "instanceNameFormat": "HP_FoD_Uploader $(message)",
+  "inputs": [
+    {
+      "name": "hp_fod_url",
+      "type": "string",
+      "label": "HP FoD Upload URL",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "HP FoD Build Server Integration Upload. This URL can be retrieved from the HP FoD Portal > Your Application > Release > Build Server menu"
+    },
+    {
+      "name": "hp_fod_api_token",
+      "type": "string",
+      "label": "HP FoD API Token",
+      "defaultValue": "$(HP_FoD_API_Token)",
+      "required": true,
+      "helpMarkDown": "API Token to be used for HP FoD upload. You must create a secret build variable named HP_FoD_API_Token and set the value to what was provided by HP FoD."
+    },
+    {
+      "name": "hp_fod_api_secret",
+      "type": "string",
+      "label": "HP FoD API Token Secret",
+      "defaultValue": "$(HP_FoD_API_Token_Secret)",
+      "required": true,
+      "helpMarkDown": "API Token Secret to be used for HP FoD upload. You must create a secret build variable named HP_FoD_API_Token_Secret and set the value to what was provided by HP FoD."
+    },
+    {
+	"name": "hp_fod_uploader_cli_path",
+	"type": "filePath",
+	"label": "Path to HP FoD .NET Uploader Tool",
+	"defaultValue": "",
+	"required": "false",
+	"helpMarkDown" : "Path to the HP FoD .NET Uploader Tool. If you do not specify any value, the task will automatically download latest version of the uploader from https://www.hpfod.com/Tools/FoDUploader.exe "
+    },
+    {
+      "name": "codebase",
+      "type": "string",
+      "label": "Path to the directory containing the codebase to be assessed by HP FoD.",
+      "defaultValue": "$(build.sourcesdirectory)",
+      "required": true,
+      "helpMarkDown" : "The Directory or the ZIP file of the source code, libraries and dependencies to be uploaded to HP FoD for Static Code Analysis "
+    }
+  ],
+  "execution": {
+    "PowerShell": {
+      "target": "$(currentDirectory)\\HP_FoD_Upload.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}
