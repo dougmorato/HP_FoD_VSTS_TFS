@@ -1,6 +1,6 @@
 {
  "manifestVersion": 1,
- "id": "HP_FoD_VSTS_TFS",
+ "id": "HP-FoD-VSTS-TFS",
    "version": "1.0",
  "name": "HP FoD integration with VSTS",
  "description": "An extension for intergation of HP FoD with TFS 2015 or VSTS. Developed by Doug Morato - doug.morato@pwc.com",
